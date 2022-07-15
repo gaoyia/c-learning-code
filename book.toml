@@ -1,0 +1,19 @@
+[book]
+title = "C语言学习代码与笔记"
+description = "C语言学习代码与笔记"
+authors = ["gaoyi"]
+language = "zh-Hans"
+multilingual = false
+src = "src"
+[build]
+build-dir = "./docs"
+[rust]
+edition = "2022"
+
+[output.html]
+default-theme = "rust"
+preferred-dark-theme = "navy"
+mathjax-support = true
+git-repository-url = "https://github.com/gaoyia/c-learning-code"
+git-repository-icon = "fa-github"
+edit-url-template = "https://github.com/gaoyia/c-learning-code/edit/master/{path}"
