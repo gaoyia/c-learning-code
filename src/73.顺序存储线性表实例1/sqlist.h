@@ -1,6 +1,6 @@
 #ifndef SQLIST_H__
 #define SQLIST_H__
-#define DATASIZE 5
+#define DATASIZE 1024
 typedef int datatype;
 
 typedef struct sqlist
@@ -20,5 +20,6 @@ int sqlist_set_empty(sqlist *);
 int sqlist_get_length(sqlist *);
 void sqlist_display(sqlist *);
 int sqlist_destroy(sqlist *);
+int sqlist_union(sqlist *, sqlist *);
 
 #endif

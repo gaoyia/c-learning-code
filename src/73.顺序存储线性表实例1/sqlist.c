@@ -51,38 +51,79 @@ int sqlist_insert(sqlist *list, int index, datatype *data)
 };
 
 int sqlist_delete(sqlist *list, int i){
+    if (i < 0 || i > list->last)
+    {
+        return -1;
+    }
+    for (int j = i; j < list->last; j++)
+    {
+        list->data[j] = list->data[j + 1];
+    }
 
+    list->last = list->last - 1;
+    return 0;
 };
 
-int sqlist_find(sqlist *list, datatype *dt){
-
+int sqlist_find(sqlist *list, datatype *data)
+{
+    if (sqlist_is_empty(list) == 0)
+    {
+        return -1;
+    }
+    for (int i = 0; i <= list->last; i++)
+    {
+        if (list->data[i] == *data)
+        {
+            return i;
+        }
+    }
+    return -1;
 };
 
 int sqlist_is_empty(sqlist *list){
-
+    if (list->last == -1)
+    {
+        return 0;
+    }
+    else
+    {
+        return 1;
+    }
 };
 
 int sqlist_set_empty(sqlist *list){
-
+    list->last = -1;
+    return 0;
 };
 
 int sqlist_get_length(sqlist *list){
-
+    return (list->last + 1);
 };
 
 void sqlist_display(sqlist *list)
 {
-    printf("\n-----sqlist_display----\n");
+    printf("\n--------sqlist_display-------\n");
 
     for (int i = 0; i <= list->last; i++)
     {
         printf("data(%d)\n", list->data[i]);
     }
-    printf("---------end--------\n");
+    printf("---------end:length(%d)--------\n", sqlist_get_length(list));
 };
 
 int sqlist_destroy(sqlist *list)
 {
     free(list);
     return 0;
+};
+
+int sqlist_union(sqlist *list1, sqlist *list2)
+{
+    for (int i = 0; i <= list2->last; i++)
+    {
+        if (sqlist_find(list1, &(list2->data[i])) < 0)
+        {
+            sqlist_insert(list1, list1->last + 1, &(list2->data[i]));
+        }
+    }
 };
